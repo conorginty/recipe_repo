@@ -158,3 +158,5 @@ buildNumber.properties
 
 # "temporary" build files
 /target
+
+*.DS_Store
