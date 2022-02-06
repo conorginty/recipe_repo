@@ -18,6 +18,14 @@ public class Recipe {
     private String url;
     private String directions;
 
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_category",
+            joinColumns = @JoinColumn(name = "recipe_id"), // Default Naming Convention that Hibernate will use to create the Tables for us
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
     private Set<Ingredient> ingredients;
 
@@ -92,6 +100,14 @@ public class Recipe {
 
     public void setDirections(String directions) {
         this.directions = directions;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 
     public Set<Ingredient> getIngredients() {
