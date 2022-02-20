@@ -15,6 +15,12 @@ public class Notes {
     @Lob // will be stored in a CLOB field in the DB
     private String recipeNotes;
 
+    public Notes() {}
+
+    public Notes(String recipeNotes) {
+        this.recipeNotes = recipeNotes;
+    }
+
     public Long getId() {
         return id;
     }

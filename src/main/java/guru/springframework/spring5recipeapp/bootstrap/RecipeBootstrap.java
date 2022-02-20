@@ -47,35 +47,24 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Recipe perfectGuacamole = newRecipeWithoutIngredients("Perfect Guacamole", 10, 0, Difficulty.EASY,
                 "PERFECT GUAC DIRECTIONS");
 
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Ripe avocados", new BigDecimal(2), each));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Kosher salt", new BigDecimal(".5"), teaspoon));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Fresh lime juice or lemon juice", new BigDecimal(2), tablespoon));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Minced red onion or thinly sliced green onion", new BigDecimal(2), tablespoon));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Serrano chilis, stems and seeds removed, minced", new BigDecimal(2), each));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Cilantro", new BigDecimal(2), tablespoon));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Freshly grated black pepper", new BigDecimal(2), dash));
-        addIngredientToRecipe(perfectGuacamole, new Ingredient("Ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
+        perfectGuacamole
+            .addIngredient(new Ingredient("Ripe avocados", new BigDecimal(2), each))
+            .addIngredient(new Ingredient("Kosher salt", new BigDecimal(".5"), teaspoon))
+            .addIngredient(new Ingredient("Fresh lime juice or lemon juice", new BigDecimal(2), tablespoon))
+            .addIngredient(new Ingredient("Minced red onion or thinly sliced green onion", new BigDecimal(2), tablespoon))
+            .addIngredient(new Ingredient("Serrano chilis, stems and seeds removed, minced", new BigDecimal(2), each))
+            .addIngredient(new Ingredient("Cilantro", new BigDecimal(2), tablespoon))
+            .addIngredient(new Ingredient("Freshly grated black pepper", new BigDecimal(2), dash))
+            .addIngredient(new Ingredient("Ripe tomato, seeds and pulp removed, chopped", new BigDecimal(".5"), each));
 
         perfectGuacamole.getCategories().add(american);
         perfectGuacamole.getCategories().add(mexican);
 
-        addNotesToRecipe(perfectGuacamole, "Perfect Guac Recipe Notes");
+        perfectGuacamole.setNotes(new Notes("Perfect Guac Recipe Notes"));
 
         recipes.add(perfectGuacamole);
 
         return recipes;
-    }
-
-    private void addNotesToRecipe(Recipe recipe, String notesContent) {
-        Notes notes = new Notes();
-        notes.setRecipeNotes(notesContent);
-        recipe.setNotes(notes);
-        notes.setRecipe(recipe);
-    }
-
-    private void addIngredientToRecipe(Recipe recipe, Ingredient ingredient) {
-        recipe.getIngredients().add(ingredient);
-        ingredient.setRecipe(recipe);
     }
 
     private Category findCategory(String categoryName) {
